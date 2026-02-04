@@ -1,0 +1,15 @@
+﻿services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    ports:
+      - "3000:3000"
+    environment:
+      - WHATSAPP_NUMBER=${WHATSAPP_NUMBER}
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run dev
+    restart: unless-stopped
