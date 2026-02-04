@@ -13,6 +13,7 @@ const whatsappHref = buildWhatsAppLink({
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -21,11 +22,23 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <>
       <header className={`site-header ${scrolled ? "is-scrolled header-blur" : ""}`}>
         <div className="container flex items-center justify-between py-4">
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3 relative z-50">
             <span className="logo-mark" aria-hidden="true">
               <svg viewBox="0 0 64 64" className="h-9 w-9" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -40,7 +53,9 @@ export default function Header() {
             </span>
             <span className="text-2xl font-semibold tracking-tight text-gold">Mãos de Fé</span>
           </Link>
-          <nav className="flex items-center gap-5 text-sm font-medium">
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
             <Link href="/" className="nav-link">
               Home
             </Link>
@@ -50,12 +65,66 @@ export default function Header() {
             <Link href="/como-comprar" className="nav-link">
               Como Comprar
             </Link>
-            <Link href={whatsappHref} target="_blank" rel="noopener noreferrer" className="nav-link">
+            <Link
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-2.5 rounded-full bg-brand-900 text-[#f5efe1] hover:bg-brand-800 transition-colors"
+            >
               WhatsApp
             </Link>
           </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden relative z-50 p-2 -mr-2 text-brand-900"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Menu"
+          >
+            {mobileMenuOpen ? (
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 6 6 18" />
+                <path d="m6 6 18 12" />
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="4" x2="20" y1="12" y2="12" />
+                <line x1="4" x2="20" y1="6" y2="6" />
+                <line x1="4" x2="20" y1="18" y2="18" />
+              </svg>
+            )}
+          </button>
+
         </div>
       </header>
+
+      {/* Mobile Navigation Overlay */}
+      <div className={`fixed inset-0 bg-[#f8f6f2] z-40 flex flex-col items-center justify-center gap-8 transition-transform duration-300 md:hidden ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}>
+        <nav className="flex flex-col items-center gap-6 text-xl font-medium">
+          <Link href="/" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+            Home
+          </Link>
+          <Link href="/portfolio" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+            Portfólio
+          </Link>
+          <Link href="/como-comprar" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+            Como Comprar
+          </Link>
+          <Link
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary mt-4 w-full"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Falar no WhatsApp
+          </Link>
+        </nav>
+        {/* Decorative background element */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-brand-200/20 to-transparent pointer-events-none" />
+      </div>
+
       <CategoryNav />
     </>
   );

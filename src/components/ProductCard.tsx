@@ -44,13 +44,12 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
   return (
     <article
       ref={cardRef}
-      className={`card card-premium card-glow h-full flex flex-col gap-3 group ${
-        isVisible ? "animate-fade-in-up" : "opacity-0"
-      }`}
+      className={`card card-premium card-glow h-full flex flex-col gap-3 group ${isVisible ? "animate-fade-in-up" : "opacity-0"
+        }`}
       style={{ animationDelay: `${index * 80}ms` }}
     >
       <Link href={`/portfolio/${product.slug}`} className="block overflow-hidden rounded-2xl">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl image-frame">
+        <div className="relative aspect-[3/4] overflow-hidden rounded-2xl image-frame">
           <div
             className={`image-skeleton ${imageLoaded ? "opacity-0" : "opacity-100"}`}
             aria-hidden="true"
