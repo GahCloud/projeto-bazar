@@ -6,8 +6,11 @@ node_modules/
 out/
 
 # env
-.env
-.env.*
+# .env is now allowed
+# .env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # logs
 npm-debug.log*
