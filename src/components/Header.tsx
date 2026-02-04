@@ -65,6 +65,9 @@ export default function Header() {
             <Link href="/como-comprar" className="nav-link">
               Como Comprar
             </Link>
+            <Link href="/sobre" className="nav-link">
+              Sobre
+            </Link>
             <Link
               href={whatsappHref}
               target="_blank"
@@ -110,6 +113,9 @@ export default function Header() {
           </Link>
           <Link href="/como-comprar" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
             Como Comprar
+          </Link>
+          <Link href="/sobre" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+            Sobre
           </Link>
           <Link
             href={whatsappHref}
