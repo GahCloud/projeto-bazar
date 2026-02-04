@@ -10,7 +10,7 @@ const categories = [
   { folder: "SANTOS_GESSO", id: "santos-de-gesso", label: "Santos de Gesso" },
   { folder: "NATAL", id: "natal", label: "Natal" },
   { folder: "HALLOWEEN", id: "halloween", label: "Halloween" },
-  { folder: "PASCOA", id: "pascoa", label: "Páscoa" },
+  { folder: "PASCOA", id: "pascoa", label: "PÃ¡scoa" },
   { folder: "MDF", id: "mdf", label: "Produtos MDF" },
   { folder: "DIVERSOS", id: "diversos", label: "Diversos" },
 ];
@@ -76,10 +76,10 @@ function buildProduct(relativePath, category) {
   const imageSrc = `/portfolio/${toPosix(path.join(category.folder, relativePath))}`;
   const alt = `${title} - ${category.label}`;
   const descriptions = {
-    "santos-de-gesso": "Imagem religiosa artesanal em gesso, pintada à mão.",
-    natal: "Enfeite natalino artesanal para decoração.",
-    halloween: "Peça artesanal temática para o Halloween.",
-    pascoa: "Peça decorativa artesanal para a Páscoa.",
+    "santos-de-gesso": "Imagem religiosa artesanal em gesso, pintada Ã  mÃ£o.",
+    natal: "Enfeite natalino artesanal para decoraÃ§Ã£o.",
+    halloween: "PeÃ§a artesanal temÃ¡tica para o Halloween.",
+    pascoa: "PeÃ§a decorativa artesanal para a PÃ¡scoa.",
     mdf: "Item artesanal produzido em MDF.",
     diversos: "Item artesanal exclusivo feito com carinho.",
   };
@@ -123,7 +123,7 @@ function main() {
           "[portfolio] Imagem duplicada detectada:",
           dedupeKey,
           "?",
-          preferNew ? "substituída" : "ignorada"
+          preferNew ? "substituï¿½da" : "ignorada"
         );
         continue;
       }
