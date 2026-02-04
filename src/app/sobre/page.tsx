@@ -23,7 +23,7 @@ export default function SobrePage() {
                             {/* Main image */}
                             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                                 <Image
-                                    src="/artesa.jpg"
+                                    src="/artesa.png"
                                     alt="Artesã Mãos de Fé"
                                     fill
                                     className="object-cover"
