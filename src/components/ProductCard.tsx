@@ -49,7 +49,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
       style={{ animationDelay: `${index * 80}ms` }}
     >
       <Link href={`/portfolio/${product.slug}`} className="block overflow-hidden rounded-2xl">
-        <div className="relative aspect-[3/4] overflow-hidden rounded-2xl image-frame">
+        <div className="relative aspect-[3/4] overflow-hidden rounded-2xl image-frame bg-[#fdfbf7] flex items-center justify-center">
           <div
             className={`image-skeleton ${imageLoaded ? "opacity-0" : "opacity-100"}`}
             aria-hidden="true"
@@ -58,12 +58,13 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
             src={product.imageSrc}
             alt={product.alt}
             fill
-            className="image-warm object-cover object-center transition-all duration-500 group-hover:scale-[1.05]"
+            className="object-contain p-2 transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             onLoadingComplete={() => setImageLoaded(true)}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-30 group-hover:opacity-70 transition-opacity duration-300" />
+          {/* Subtle overlay for depth, reduced opacity */}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/[0.03] transition-colors duration-300" />
         </div>
       </Link>
       <div className="flex-1 space-y-2">
