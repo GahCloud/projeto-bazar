@@ -100,6 +100,22 @@ function buildProduct(relativePath, category) {
 function main() {
   const dedupe = new Map();
   const slugSet = new Set();
+  const existingDescriptions = new Map();
+
+  // 1. Read existing data to preserve custom descriptions
+  if (fs.existsSync(OUT_JSON)) {
+    try {
+      const existingData = JSON.parse(fs.readFileSync(OUT_JSON, "utf8"));
+      for (const item of existingData) {
+        if (item.id && item.description) {
+          existingDescriptions.set(item.id, item.description);
+        }
+      }
+      console.info("[portfolio] Preservando descrições de", existingDescriptions.size, "itens existentes.");
+    } catch (err) {
+      console.warn("[portfolio] Erro ao ler portfolio.json existente, descrições personalizadas podem ser perdidas.", err);
+    }
+  }
 
   for (const category of categories) {
     const categoryPath = path.join(ROOT, category.folder);
@@ -113,6 +129,11 @@ function main() {
       const dedupeKey = path.basename(relativePath, ext).toLowerCase();
       const seed = buildProduct(relativePath, category);
 
+      // 2. Restore custom description if exists
+      if (existingDescriptions.has(seed.id)) {
+        seed.description = existingDescriptions.get(seed.id);
+      }
+
       const existing = dedupe.get(dedupeKey);
       if (existing) {
         const preferNew = existing._sourceFolder === "DIVERSOS" && category.folder !== "DIVERSOS";
@@ -123,7 +144,7 @@ function main() {
           "[portfolio] Imagem duplicada detectada:",
           dedupeKey,
           "?",
-          preferNew ? "substitu�da" : "ignorada"
+          preferNew ? "substituída" : "ignorada"
         );
         continue;
       }
