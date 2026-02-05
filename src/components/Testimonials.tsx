@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 interface Testimonial {
   id: string;
@@ -17,8 +18,8 @@ const testimonials: Testimonial[] = [
   {
     id: "1",
     name: "Maria Fernanda Oliveira",
-    location: "Campinas, SP",
-    avatar: "MO",
+    location: "São Paulo, SP",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
     comment: "Encomendei um santo de gesso para a casa da minha mãe. A peça ficou maravilhosa, o acabamento é impecável! Rosa Helena foi super atenciosa durante todo o processo.",
     product: "Santo de Gesso",
     rating: 5,
@@ -27,8 +28,8 @@ const testimonials: Testimonial[] = [
   {
     id: "2",
     name: "Carlos Eduardo Santos",
-    location: "Valinhos, SP",
-    avatar: "CS",
+    location: "Rio de Janeiro, RJ",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
     comment: "Comprei a decoração de Natal para presentear minha esposa. Ela amou! As peças são únicas, dá pra sentir o carinho em cada detalhe. Já fiz outra encomenda!",
     product: "Decoração Natalina",
     rating: 5,
@@ -37,8 +38,8 @@ const testimonials: Testimonial[] = [
   {
     id: "3",
     name: "Ana Paula Ribeiro",
-    location: "Vinhedo, SP",
-    avatar: "AR",
+    location: "Belo Horizonte, MG",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
     comment: "Super recomendo! Fiz uma encomenda personalizada de anjo para o batizado da minha sobrinha. Ficou perfeito, todo mundo elogiou. O pagamento via PIX foi super prático.",
     product: "Anjo Personalizado",
     rating: 5,
@@ -47,8 +48,8 @@ const testimonials: Testimonial[] = [
   {
     id: "4",
     name: "Roberto Silva Lima",
-    location: "Campinas, SP - Jardim das Oliveiras",
-    avatar: "RL",
+    location: "Curitiba, PR",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
     comment: "Atendimento excelente! A Rosa me ajudou a escolher a peça ideal para minha sala. Chegou super bem embalada e o prazo foi cumprido.",
     product: "Peça de MDF",
     rating: 5,
@@ -57,8 +58,8 @@ const testimonials: Testimonial[] = [
   {
     id: "5",
     name: "Juliana Costa Mendes",
-    location: "Hortolândia, SP",
-    avatar: "JM",
+    location: "Salvador, BA",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face",
     comment: "Amei minha compra! Os produtos são ainda mais lindos pessoalmente. Já indiquei para várias amigas do trabalho. A entrega foi rápida e segura.",
     product: "Diversos",
     rating: 5,
@@ -67,8 +68,8 @@ const testimonials: Testimonial[] = [
   {
     id: "6",
     name: "Fernando Henrique Souza",
-    location: "Campinas, SP - Barão Geraldo",
-    avatar: "FS",
+    location: "Fortaleza, CE",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
     comment: "Encomendei uma peça especial para minha mãe no Dia das Mães. Foi um sucesso! A qualidade do trabalho artesanal é notável. Voltei a comprar para o Natal.",
     product: "Peça Especial",
     rating: 5,
@@ -97,7 +98,7 @@ export default function Testimonials() {
             O que dizem nossos clientes
           </h2>
           <p className="text-gray-600">
-            Depoimentos de pessoas que confiaram no nosso trabalho artesanal
+            Depoimentos de clientes satisfeitos de todo o Brasil
           </p>
         </div>
 
@@ -110,8 +111,14 @@ export default function Testimonials() {
             >
               {/* Header Card */}
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-full bg-brand-100 flex items-center justify-center text-brand-700 font-semibold">
-                  {testimonial.avatar}
+                <div className="relative w-12 h-12 rounded-full overflow-hidden bg-brand-100 flex-shrink-0">
+                  <Image
+                    src={testimonial.avatar}
+                    alt={`Foto de ${testimonial.name}`}
+                    fill
+                    className="object-cover"
+                    unoptimized={true}
+                  />
                 </div>
                 <div>
                   <h4 className="font-semibold text-brand-900">{testimonial.name}</h4>
@@ -173,7 +180,7 @@ export default function Testimonials() {
         {/* Trust Indicators */}
         <div className="mt-12 flex flex-wrap justify-center gap-8 text-center">
           <div>
-            <p className="text-3xl font-bold text-brand-900">100+</p>
+            <p className="text-3xl font-bold text-brand-900">500+</p>
             <p className="text-sm text-gray-600">Clientes Satisfeitos</p>
           </div>
           <div>
@@ -181,8 +188,8 @@ export default function Testimonials() {
             <p className="text-sm text-gray-600">Avaliação Média</p>
           </div>
           <div>
-            <p className="text-3xl font-bold text-brand-900">Região</p>
-            <p className="text-sm text-gray-600">Campinas e Região</p>
+            <p className="text-3xl font-bold text-brand-900">Brasil</p>
+            <p className="text-sm text-gray-600">Atendimento em Todo Território</p>
           </div>
         </div>
       </div>
