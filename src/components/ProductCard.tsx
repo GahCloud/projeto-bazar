@@ -34,7 +34,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
           observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.1, rootMargin: "50px" }
     );
 
     observer.observe(node);
@@ -48,22 +48,24 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
         }`}
       style={{ animationDelay: `${index * 80}ms` }}
     >
-      <Link href={`/portfolio/${product.slug}`} className="block overflow-hidden rounded-2xl">
+      <Link href={`/portfolio/${product.slug}`} className="block overflow-hidden rounded-2xl" aria-label={`Ver detalhes de ${product.title}`}>
         <div className="relative aspect-[3/4] overflow-hidden rounded-2xl image-frame bg-[#fdfbf7] flex items-center justify-center">
           <div
             className={`image-skeleton ${imageLoaded ? "opacity-0" : "opacity-100"}`}
             aria-hidden="true"
           />
-          <Image
-            src={product.imageSrc}
-            alt={product.alt}
-            fill
-            className="object-contain p-2 transition-transform duration-500 group-hover:scale-105"
-            loading="lazy"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            onLoadingComplete={() => setImageLoaded(true)}
-          />
-          {/* Subtle overlay for depth, reduced opacity */}
+          {isVisible && (
+            <Image
+              src={product.imageSrc}
+              alt={product.alt}
+              fill
+              className="object-contain p-2 transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              onLoadingComplete={() => setImageLoaded(true)}
+              onError={() => setImageLoaded(true)}
+            />
+          )}
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/[0.03] transition-colors duration-300" />
         </div>
       </Link>

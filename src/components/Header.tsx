@@ -80,9 +80,10 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden relative z-50 p-2 -mr-2 text-brand-900"
+            className="md:hidden relative z-50 p-2 -mr-2 text-brand-900 focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2 rounded-lg"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Menu"
+            aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? (
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -102,8 +103,12 @@ export default function Header() {
       </header>
 
       {/* Mobile Navigation Overlay */}
-      <div className={`fixed inset-0 bg-[#f8f6f2] z-40 flex flex-col items-center justify-center gap-8 transition-transform duration-300 md:hidden ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`}>
+      <div 
+        className={`fixed inset-0 bg-[#f8f6f2] z-40 flex flex-col items-center justify-center gap-8 transition-transform duration-300 md:hidden ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        role="navigation"
+        aria-label="Menu mobile"
+      >
         <nav className="flex flex-col items-center gap-6 text-xl font-medium">
           <Link href="/" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
             Home

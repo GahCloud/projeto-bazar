@@ -1,10 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
 
-export const metadata = {
-    title: "Quem Sou Eu | Mãos de Fé",
-    description:
-        "Conheça a história por trás da Mãos de Fé: arte sacra artesanal feita com oração, propósito e muito carinho.",
+export const metadata: Metadata = {
+    title: "Sobre | Mãos de Fé - Artesanato Religioso",
+    description: "Conheça a história por trás da Mãos de Fé: arte sacra artesanal feita com oração, propósito e muito carinho. Santos de gesso, decorações natalinas e peças especiais.",
+    keywords: "sobre mãos de fé, artesanato religioso, arte sacra, santos de gesso, história da loja",
+    openGraph: {
+        title: "Sobre | Mãos de Fé - Artesanato Religioso",
+        description: "Conheça a história por trás da Mãos de Fé: arte sacra artesanal feita com oração, propósito e muito carinho.",
+        type: "website",
+    },
 };
 
 export default function SobrePage() {
@@ -24,10 +30,12 @@ export default function SobrePage() {
                             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                                 <Image
                                     src="/perfil-artesa.png"
-                                    alt="Artesã Mãos de Fé"
-                                    fill
+                                    alt="Artesã Mãos de Fé - Criadora de artesanato religioso"
+                                    width={400}
+                                    height={533}
                                     className="object-cover"
                                     priority
+                                    unoptimized={true}
                                 />
                             </div>
 
@@ -93,8 +101,9 @@ export default function SobrePage() {
                         {/* CTA */}
                         <div className="pt-6">
                             <Link
-                                href="/"
-                                className="inline-flex items-center gap-2 btn btn-primary shadow-soft"
+                                href="/portfolio"
+                                className="inline-flex items-center gap-2 btn btn-primary shadow-soft focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2 rounded-lg"
+                                aria-label="Ver portfólio de produtos artesanais"
                             >
                                 <span>Ver Portfólio</span>
                                 <svg
@@ -102,6 +111,7 @@ export default function SobrePage() {
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
+                                    aria-hidden="true"
                                 >
                                     <path
                                         strokeLinecap="round"

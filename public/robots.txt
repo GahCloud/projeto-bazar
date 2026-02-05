@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Priorizar páginas importantes
+Allow: /portfolio
+Allow: /como-comprar
+Allow: /sobre
+
+# Bloquear arquivos de sistema
+Disallow: /_next/
+Disallow: /api/
+Disallow: /*.json$
+
+# Sitemap
+Sitemap: https://maos-de-fe.pages.dev/sitemap.xml
