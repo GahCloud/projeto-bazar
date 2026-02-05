@@ -18,10 +18,10 @@ export default function SobrePage() {
         <main className="min-h-screen bg-gradient-to-b from-[#fdfbf7] to-[#f5f0e8]">
             {/* Hero Section */}
             <section className="container-custom py-16 md:py-24">
-                <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
                     {/* Image Column */}
                     <div className="relative order-1 md:order-2">
-                        <div className="relative aspect-[3/4] max-w-md mx-auto">
+                        <div className="relative aspect-[3/4] max-w-sm mx-auto lg:max-w-md">
                             {/* Decorative frame */}
                             <div className="absolute -inset-4 bg-gradient-to-br from-brand/20 to-gold/30 rounded-3xl -rotate-3" />
                             <div className="absolute -inset-4 bg-gradient-to-tl from-brand/10 to-gold/20 rounded-3xl rotate-2" />
@@ -42,6 +42,12 @@ export default function SobrePage() {
                             {/* Floating accent */}
                             <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gold/20 rounded-full blur-2xl" />
                             <div className="absolute -top-6 -left-6 w-32 h-32 bg-brand/10 rounded-full blur-3xl" />
+                            
+                            {/* Name */}
+                            <div className="text-center mt-6 space-y-1">
+                                <h3 className="text-xl font-serif text-brand font-semibold">Rosa Helena</h3>
+                                <p className="text-sm text-brand/60">Artesã Mãos de Fé</p>
+                            </div>
                         </div>
                     </div>
 
