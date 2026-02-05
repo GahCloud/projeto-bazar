@@ -1,6 +1,7 @@
 ﻿import Link from "next/link";
 import ProductCard from "@/components/ProductCard";
 import InfoModal from "@/components/InfoModal";
+import Testimonials from "@/components/Testimonials";
 import { allProducts } from "@/data/products";
 
 export default function HomePage() {
@@ -49,6 +50,8 @@ export default function HomePage() {
           </div>
         </section>
       </div>
+      
+      <Testimonials />
       
       <InfoModal />
     </>
